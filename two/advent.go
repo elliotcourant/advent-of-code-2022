@@ -26,6 +26,22 @@ func (p Play) PlayerScore() int {
 	return int(p[1] + p[2])
 }
 
+var move = [3]Score{
+	Rock,
+	Paper,
+	Scissors,
+}
+var moveOutcomes = [3]Score{
+	Draw,
+	Won,
+	Lost,
+}
+
+func Result(a, b Score) (outcome Score) {
+	play := move[a-1] + move[b-1]
+	return moveOutcomes[(int(play)+int(a))%len(moveOutcomes)]
+}
+
 // This is so ugly and dumb
 var outcomes = map[Score]map[Score]Score{
 	Rock: {
